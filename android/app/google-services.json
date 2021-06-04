@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "222989582827",
+    "project_id": "tontonin-35f59",
+    "storage_bucket": "tontonin-35f59.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:222989582827:android:6c1cabea856dde9324d9ae",
+        "android_client_info": {
+          "package_name": "com.example.tontonin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "222989582827-loplh2du545ea01m6lu65up9ko9sds7u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tontonin",
+            "certificate_hash": "62e0c88aeda6be693db195eec195dc4bf9426b22"
+          }
+        },
+        {
+          "client_id": "222989582827-tlhr93qj4ajf65i28513uadrrthjbn93.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVmrMlxn7h5c_3D22-6MPTRuC104ojLDc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "222989582827-tlhr93qj4ajf65i28513uadrrthjbn93.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
