@@ -1,44 +1,50 @@
 import 'package:tontonin/UI/detail/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:tontonin/models/movie.dart';
 
-class DetailPage extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
-}
+class DetailPage extends StatelessWidget {
+  //@override
+  //_MyAppState createState() => _MyAppState();
+//}
 
-class _MyAppState extends State<DetailPage> with TickerProviderStateMixin {
+//class _MyAppState extends State<DetailPage> with TickerProviderStateMixin {
   final double infoHeight = 364.0;
   AnimationController animationController;
   Animation<double> animation;
   double opacity1 = 0.0;
   double opacity2 = 0.0;
   double opacity3 = 0.0;
-  @override
-  void initState() {
-    animationController = AnimationController(
-        duration: const Duration(milliseconds: 1000), vsync: this);
-    animation = Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
-        parent: animationController,
-        curve: Interval(0, 1.0, curve: Curves.fastOutSlowIn)));
-    setData();
-    super.initState();
-  }
 
-  Future<void> setData() async {
-    animationController.forward();
-    await Future<dynamic>.delayed(const Duration(milliseconds: 200));
-    setState(() {
-      opacity1 = 1.0;
-    });
-    await Future<dynamic>.delayed(const Duration(milliseconds: 200));
-    setState(() {
-      opacity2 = 1.0;
-    });
-    await Future<dynamic>.delayed(const Duration(milliseconds: 200));
-    setState(() {
-      opacity3 = 1.0;
-    });
-  }
+  Movie movies;
+  final String imgPath = 'https://image.tmdb.org/t/p/w600_and_h900_bestv2/';
+  DetailPage(this.movies);
+
+  // @override
+  // void initState() {
+  //   animationController = AnimationController(
+  //       duration: const Duration(milliseconds: 1000), vsync: this);
+  //   animation = Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+  //       parent: animationController,
+  //       curve: Interval(0, 1.0, curve: Curves.fastOutSlowIn)));
+  //   setData();
+  //   super.initState();
+  // }
+
+  // Future<void> setData() async {
+  //   animationController.forward();
+  //   await Future<dynamic>.delayed(const Duration(milliseconds: 200));
+  //   setState(() {
+  //     opacity1 = 1.0;
+  //   });
+  //   await Future<dynamic>.delayed(const Duration(milliseconds: 200));
+  //   setState(() {
+  //     opacity2 = 1.0;
+  //   });
+  //   await Future<dynamic>.delayed(const Duration(milliseconds: 200));
+  //   setState(() {
+  //     opacity3 = 1.0;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +64,7 @@ class _MyAppState extends State<DetailPage> with TickerProviderStateMixin {
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       fit: BoxFit.fill,
-                      image: AssetImage('assets/cruella.jpg'),
+                      image: NetworkImage(imgPath + movies.posterPath),
                     ),
                   ),
                 ),
@@ -99,7 +105,7 @@ class _MyAppState extends State<DetailPage> with TickerProviderStateMixin {
                             padding: const EdgeInsets.only(
                                 top: 32.0, left: 18, right: 150),
                             child: Text(
-                              'Cruella',
+                              movies.title,
                               textAlign: TextAlign.left,
                               style: TextStyle(
                                 fontWeight: FontWeight.w600,
@@ -130,7 +136,7 @@ class _MyAppState extends State<DetailPage> with TickerProviderStateMixin {
                                   child: Row(
                                     children: <Widget>[
                                       Text(
-                                        '8.6',
+                                        movies.voteAverage.toString(),
                                         textAlign: TextAlign.left,
                                         style: TextStyle(
                                           fontWeight: FontWeight.w300,
@@ -157,9 +163,9 @@ class _MyAppState extends State<DetailPage> with TickerProviderStateMixin {
                               padding: const EdgeInsets.all(8),
                               child: Row(
                                 children: <Widget>[
-                                  getTimeBoxUI('2021', 'Release'),
-                                  getTimeBoxUI('134 Minute', 'Time'),
-                                  getTimeBoxUI('17+', 'Rating'),
+                                  getTimeBoxUI(movies.releaseDate, 'Release'),
+                                  // getTimeBoxUI('134 Minute', 'Time'),
+                                  // getTimeBoxUI('17+', 'Rating'),
                                 ],
                               ),
                             ),
@@ -172,7 +178,7 @@ class _MyAppState extends State<DetailPage> with TickerProviderStateMixin {
                                 padding: const EdgeInsets.only(
                                     left: 16, right: 16, top: 8, bottom: 0),
                                 child: Text(
-                                  'Berlatar London pada 1970-an, Cruella menceritakan kisah kehidupan awal Cruella de Vil (Emma Stone), tokoh jahat ikonik dari film 101 Dalmatians. Berlatar London pada 1970-an, Cruella menceritakan kisah kehidupan awal Cruella de Vil (Emma Stone), tokoh jahat ikonik dari film 101 Dalmatians.Berlatar London pada 1970-an, Cruella menceritakan kisah kehidupan awal Cruella de Vil (Emma Stone), tokoh jahat ikonik dari film 101 Dalmatians.Berlatar London pada 1970-an, Cruella menceritakan kisah kehidupan awal Cruella de Vil (Emma Stone), tokoh jahat ikonik dari film 101 Dalmatians.Berlatar London pada 1970-an, Cruella menceritakan kisah kehidupan awal Cruella de Vil (Emma Stone), tokoh jahat ikonik dari film 101 Dalmatians.',
+                                  movies.overview,
                                   textAlign: TextAlign.justify,
                                   style: TextStyle(
                                     fontWeight: FontWeight.w300,
@@ -213,7 +219,7 @@ class _MyAppState extends State<DetailPage> with TickerProviderStateMixin {
                         decoration: BoxDecoration(
                           image: DecorationImage(
                             fit: BoxFit.fill,
-                            image: AssetImage('assets/cruella1.jpeg'),
+                            image: NetworkImage(imgPath + movies.posterPath),
                           ),
                         ),
                       ),
