@@ -19,7 +19,7 @@ class _MovieListState extends State<Tontonin> {
   List movies1;
   List movies2;
   TontoninService service;
-  
+
   Future initialize() async {
     movies1 = [];
     movies2 = [];
@@ -33,7 +33,7 @@ class _MovieListState extends State<Tontonin> {
     });
   }
 
-  final String imgPath = 'https://image.tmdb.org/t/p/w600_and_h900_bestv2/'; 
+  final String imgPath = 'https://image.tmdb.org/t/p/w600_and_h900_bestv2/';
 
   @override
   void initState() {
@@ -41,6 +41,7 @@ class _MovieListState extends State<Tontonin> {
     initialize();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -55,16 +56,15 @@ class _MovieListState extends State<Tontonin> {
         title: Text(
           'Tontonin'.toUpperCase(),
           style: Theme.of(context).textTheme.caption.copyWith(
-            color: Colors.black45,
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
+                color: Colors.black45,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
         ),
         actions: [
           Container(
-            margin: EdgeInsets.only(right: 15),
-            child: Image.asset('img/Tontonin.png')
-          ),
+              margin: EdgeInsets.only(right: 15),
+              child: Image.asset('img/Tontonin.png')),
         ],
       ),
       body: Stack(
@@ -90,7 +90,7 @@ class _MovieListState extends State<Tontonin> {
                     width: 52,
                     child: CircleAvatar(
                       //backgroundImage: NetworkImage(
-                      //  imageUrl,
+                      //imageUrl,
                       //),
                       radius: 60,
                       backgroundColor: Colors.transparent,
@@ -98,8 +98,7 @@ class _MovieListState extends State<Tontonin> {
                   ),
                 ),
                 Text(
-                  'Hello',
-                  //'Hello $email',
+                  'Hello \n $email',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w900),
                 ),
                 Expanded(
@@ -107,44 +106,40 @@ class _MovieListState extends State<Tontonin> {
                     scrollDirection: Axis.horizontal,
                     children: <Widget>[
                       Category(
-                        icon: Icons.analytics_outlined,
-                        title: 'Popular',
-                        press: () {
-                          MaterialPageRoute route =
-                            MaterialPageRoute(builder: (_) => Popular());
-                          Navigator.push(context, route);
-                        }
-                      ),
-                      SizedBox(width:10),
+                          icon: Icons.analytics_outlined,
+                          title: 'Popular',
+                          press: () {
+                            MaterialPageRoute route =
+                                MaterialPageRoute(builder: (_) => Popular());
+                            Navigator.push(context, route);
+                          }),
+                      SizedBox(width: 10),
                       Category(
-                        icon: Icons.star_border,
-                        title: 'Top Rating',
-                        press: (){
-                          MaterialPageRoute route =
-                            MaterialPageRoute(builder: (_) => TopRating());
-                          Navigator.push(context, route);
-                        }
-                      ),
-                      SizedBox(width:10),
+                          icon: Icons.star_border,
+                          title: 'Top Rating',
+                          press: () {
+                            MaterialPageRoute route =
+                                MaterialPageRoute(builder: (_) => TopRating());
+                            Navigator.push(context, route);
+                          }),
+                      SizedBox(width: 10),
                       Category(
-                        icon: Icons.slideshow,
-                        title: 'Now Playing',
-                        press: () {
-                          MaterialPageRoute route =
-                            MaterialPageRoute(builder: (_) => NowPlaying());
-                          Navigator.push(context, route);
-                        }
-                      ),
-                      SizedBox(width:10),
+                          icon: Icons.slideshow,
+                          title: 'Now Playing',
+                          press: () {
+                            MaterialPageRoute route =
+                                MaterialPageRoute(builder: (_) => NowPlaying());
+                            Navigator.push(context, route);
+                          }),
+                      SizedBox(width: 10),
                       Category(
-                        icon: Icons.calendar_today,
-                        title: 'Upcoming',
-                        press: () {
-                          MaterialPageRoute route =
-                            MaterialPageRoute(builder: (_) => Upcoming());
-                          Navigator.push(context, route);
-                        }
-                      ),
+                          icon: Icons.calendar_today,
+                          title: 'Upcoming',
+                          press: () {
+                            MaterialPageRoute route =
+                                MaterialPageRoute(builder: (_) => Upcoming());
+                            Navigator.push(context, route);
+                          }),
                     ],
                   ),
                 ),
@@ -158,37 +153,31 @@ class _MovieListState extends State<Tontonin> {
                   ),
                 ),
                 Expanded(
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: (this.moviesCount1 == null) ? 0 : this.moviesCount1,
-                    itemBuilder: (context, int index) {
-                      return InkWell(
-                        onTap: () {
-                          MaterialPageRoute route = MaterialPageRoute(
-                            builder: (_) => DetailPage(movies2[index])
-                          );
-                          Navigator.push(context, route);
-                        },
-                        child: Card(
-                          elevation: 4.0,
-                          child: Column(
-                            children: [
-                              Image.network(
-                                imgPath + movies1[index].posterPath,
-                                height: 100,
-                                fit: BoxFit.cover
-                              ),
-                              Text(
-                                movies1[index].title,
-                                style: TextStyle(fontSize: 14),
-                              )
-                            ]
-                          ),
-                        )
-                      );
-                    }
-                  )
-                ),
+                    child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount:
+                            (this.moviesCount1 == null) ? 0 : this.moviesCount1,
+                        itemBuilder: (context, int index) {
+                          return InkWell(
+                              onTap: () {
+                                MaterialPageRoute route = MaterialPageRoute(
+                                    builder: (_) => DetailPage(movies1[index]));
+                                Navigator.push(context, route);
+                              },
+                              child: Card(
+                                elevation: 4.0,
+                                child: Column(children: [
+                                  Image.network(
+                                      imgPath + movies1[index].posterPath,
+                                      height: 100,
+                                      fit: BoxFit.cover),
+                                  Text(
+                                    movies1[index].title,
+                                    style: TextStyle(fontSize: 14),
+                                  )
+                                ]),
+                              ));
+                        })),
                 SizedBox(height: 10),
                 Text(
                   'Trending This Week',
@@ -199,37 +188,31 @@ class _MovieListState extends State<Tontonin> {
                   ),
                 ),
                 Expanded(
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: (this.moviesCount2 == null) ? 0 : this.moviesCount2,
-                    itemBuilder: (context, int index) {
-                      return InkWell(
-                        onTap: () {
-                          MaterialPageRoute route = MaterialPageRoute(
-                            builder: (_) => DetailPage(movies2[index])
-                          );
-                          Navigator.push(context, route);
-                        },
-                        child: Card(
-                          elevation: 4.0,
-                          child: Column(
-                            children: [
-                              Image.network(
-                                imgPath + movies2[index].posterPath,
-                                height: 100,
-                                fit: BoxFit.cover
-                              ),
-                              Text(
-                                movies2[index].title,
-                                style: TextStyle(fontSize: 14),
-                              )
-                            ]
-                          ),
-                        )
-                      );
-                    }
-                  )
-                ),
+                    child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount:
+                            (this.moviesCount2 == null) ? 0 : this.moviesCount2,
+                        itemBuilder: (context, int index) {
+                          return InkWell(
+                              onTap: () {
+                                MaterialPageRoute route = MaterialPageRoute(
+                                    builder: (_) => DetailPage(movies2[index]));
+                                Navigator.push(context, route);
+                              },
+                              child: Card(
+                                elevation: 4.0,
+                                child: Column(children: [
+                                  Image.network(
+                                      imgPath + movies2[index].posterPath,
+                                      height: 100,
+                                      fit: BoxFit.cover),
+                                  Text(
+                                    movies2[index].title,
+                                    style: TextStyle(fontSize: 14),
+                                  )
+                                ]),
+                              ));
+                        })),
               ],
             ),
           )),
@@ -283,35 +266,34 @@ class Category extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(13),
       child: Container(
-        width: 100,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(13),
-          boxShadow: [
-            BoxShadow(
-              offset: Offset(0, 17),
-              blurRadius: 17,
-              spreadRadius: -23,
-            )
-          ],
-        ),
-        child: Material(
-          color: Colors.transparent,
-          child: InkWell(
-            onTap: press,
-            child: Column(children: <Widget>[
-              Spacer(),
-              Icon(icon, size: 100, color: Colors.blue[200]),
-              Text(
-                title,
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16),
-              ),
-              Spacer(),
-            ]),
+          width: 100,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(13),
+            boxShadow: [
+              BoxShadow(
+                offset: Offset(0, 17),
+                blurRadius: 17,
+                spreadRadius: -23,
+              )
+            ],
           ),
-        )
-      ),
+          child: Material(
+            color: Colors.transparent,
+            child: InkWell(
+              onTap: press,
+              child: Column(children: <Widget>[
+                Spacer(),
+                Icon(icon, size: 100, color: Colors.blue[200]),
+                Text(
+                  title,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 16),
+                ),
+                Spacer(),
+              ]),
+            ),
+          )),
     );
   }
 }
