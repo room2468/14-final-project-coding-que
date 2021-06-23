@@ -8,6 +8,7 @@ class Movie {
   String title;
   bool video;
   double voteAverage;
+  String originalLanguage;
 
   Movie(
     this.id,
@@ -18,7 +19,8 @@ class Movie {
     this.releaseDate,
     this.title,
     this.video,
-    this.voteAverage
+    this.voteAverage,
+    this.originalLanguage,
   );
 
   Movie.fromJson(Map<String, dynamic> parsedJson) {
@@ -30,6 +32,7 @@ class Movie {
     this.releaseDate = parsedJson['release_date'];
     this.title = parsedJson['title'];
     this.video = parsedJson['video'];
-    this.voteAverage = parsedJson['vote_average'] * 1.0; 
+    this.voteAverage = parsedJson['vote_average'] * 1.0;
+    this.originalLanguage = parsedJson['original_language'];
   }
 }

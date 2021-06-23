@@ -55,12 +55,13 @@ class _MyAppState extends State<DetailPage> with TickerProviderStateMixin {
     final double tempHeight = MediaQuery.of(context).size.height -
         (MediaQuery.of(context).size.width / 1.7) +
         24.0;
-        String path;
-        if(movies.posterPath != null) {
-          path = imgPath + movies.posterPath;
-        }else {
-          path = 'https://images.freeimages.com/images/large-previews/5eb/movie-clapboard-1184339.jpg';
-        }
+    String path;
+    if (movies.posterPath != null) {
+      path = imgPath + movies.posterPath;
+    } else {
+      path =
+          'https://images.freeimages.com/images/large-previews/5eb/movie-clapboard-1184339.jpg';
+    }
     return Container(
       color: DesignAppTheme.nearlyWhite,
       child: Scaffold(
@@ -113,7 +114,7 @@ class _MyAppState extends State<DetailPage> with TickerProviderStateMixin {
                         children: <Widget>[
                           Padding(
                             padding: const EdgeInsets.only(
-                                top: 32.0, left: 18, right: 150),
+                                top: 20, left: 18, right: 150),
                             child: Text(
                               movies.title,
                               textAlign: TextAlign.left,
@@ -127,21 +128,11 @@ class _MyAppState extends State<DetailPage> with TickerProviderStateMixin {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(
-                                left: 19, right: 30, bottom: 8, top: 28),
+                                left: 19, right: 30, bottom: 1, top: 18),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: <Widget>[
-                                Text(
-                                  'Crime , Comedy',
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w300,
-                                    fontSize: 20,
-                                    letterSpacing: 0.27,
-                                    color: DesignAppTheme.nearlyBlue,
-                                  ),
-                                ),
                                 Container(
                                   child: Row(
                                     children: <Widget>[
@@ -174,8 +165,8 @@ class _MyAppState extends State<DetailPage> with TickerProviderStateMixin {
                               child: Row(
                                 children: <Widget>[
                                   getTimeBoxUI(movies.releaseDate, 'Release'),
-                                  // getTimeBoxUI('134 Minute', 'Time'),
-                                  // getTimeBoxUI('17+', 'Rating'),
+                                  getTimeBoxUI(
+                                      movies.originalLanguage, 'Language'),
                                 ],
                               ),
                             ),
@@ -222,8 +213,8 @@ class _MyAppState extends State<DetailPage> with TickerProviderStateMixin {
                 child: Card(
                   color: DesignAppTheme.nearlyBlue,
                   child: Container(
-                    width: 130,
-                    height: 200,
+                    width: 120,
+                    height: 170,
                     child: Center(
                       child: Container(
                         decoration: BoxDecoration(
