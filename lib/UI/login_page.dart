@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tontonin/service/sign_in.dart';
 import 'package:tontonin/UI/home/home.dart';
+import 'package:tontonin/UI/register_page.dart';
+import 'package:tontonin/service/sign_in.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -8,6 +9,9 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,12 +22,90 @@ class _LoginPageState extends State<LoginPage> {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              FlutterLogo(size: 150),
-              SizedBox(height: 50),
+              Container(
+                child: Image.asset("img/Tontonin.jpg"),
+                width: 180,
+              ),
+              SizedBox(height: 30),
+              Text(
+                'Login Form',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 28),
+              _signInEmail(),
               _signInButton(),
+              _registerButton(),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _signInEmail() {
+    return Container(
+      width: 330,
+      child: Column(
+        children: [
+          TextFormField(
+            controller: emailController,
+            decoration: InputDecoration(
+              hintText: 'Email Address',
+              icon: Icon(Icons.email),
+            ),
+          ),
+          TextFormField(
+            obscureText: true,
+            controller: passwordController,
+            decoration: InputDecoration(
+              hintText: 'Password',
+              icon: Icon(Icons.input),
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.all(20),
+            child: OutlineButton(
+              splashColor: Colors.grey,
+              onPressed: () {
+                signIn(emailController.text, passwordController.text)
+                    .then((result) {
+                  if (result != null) {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return Tontonin();
+                        },
+                      ),
+                    );
+                  }
+                });
+              },
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(40)),
+              highlightElevation: 0,
+              borderSide: BorderSide(color: Colors.grey),
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: Text(
+                        'Log in ',
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.blue,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -53,20 +135,36 @@ class _LoginPageState extends State<LoginPage> {
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            //Image(image: AssetImage("assets/google_logo.png"), height: 35.0),
+            /*Image(
+                image: NetworkImage(
+                    'https://www.freepnglogos.com/uploads/google-logo-png/google-logo-icon-png-transparent-background-osteopathy-16.png'),
+                height: 35.0),*/
             Padding(
               padding: const EdgeInsets.only(left: 10),
               child: Text(
-                'Sign in with Google',
+                'Sign in with Google ',
                 style: TextStyle(
                   fontSize: 20,
-                  color: Colors.grey,
+                  color: Colors.blue,
                 ),
               ),
             )
           ],
         ),
       ),
+    );
+  }
+
+  Widget _registerButton() {
+    return FlatButton(
+      child: Text(
+        "Don't have an account? Register here",
+        style: TextStyle(color: Colors.black54),
+      ),
+      onPressed: () async {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => Register()));
+      },
     );
   }
 }

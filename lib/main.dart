@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tontonin/UI/home/home.dart';
+import 'package:tontonin/UI/login_page.dart';
 
 // import 'package:tontonin/UI/login_page.dart';
 
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Tontonin(),
+      home: LoginPage(),
     );
   }
 }
