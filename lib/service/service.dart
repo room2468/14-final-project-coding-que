@@ -54,4 +54,52 @@ class TontoninService {
       return null;
     }
   }
+
+  Future<List> getTopRating() async {
+    final String uri = baseUrl+'/movie/top_rated?'+apiKey;
+
+    http.Response result = await http.get(Uri.parse(uri));
+    if (result.statusCode == HttpStatus.ok) {
+      print("Sukses");
+      final jsonResponse = json.decode(result.body);
+      final moviesMap = jsonResponse['results'];
+      List movies = moviesMap.map((i) => Movie.fromJson(i)).toList();
+      return movies;
+    } else {
+      print("Fail");
+      return null;
+    }
+  }
+
+  Future<List> getTrendingDay() async {
+    final String uri = baseUrl+'/trending/movie/day?'+apiKey;
+
+    http.Response result = await http.get(Uri.parse(uri));
+    if (result.statusCode == HttpStatus.ok) {
+      print("Sukses");
+      final jsonResponse = json.decode(result.body);
+      final movies = jsonResponse['results'];
+      List movieList = movies.map((i) => Movie.fromJson(i)).toList();
+      return movieList;
+    } else {
+      print("Fail");
+      return null;
+    }
+  }
+
+  Future<List> getTrendingWeek() async {
+    final String uri = baseUrl+'/trending/movie/week?'+apiKey;
+
+    http.Response result = await http.get(Uri.parse(uri));
+    if (result.statusCode == HttpStatus.ok) {
+      print("Sukses");
+      final jsonResponse = json.decode(result.body);
+      final movies = jsonResponse['results'];
+      List movieList = movies.map((i) => Movie.fromJson(i)).toList();
+      return movieList;
+    } else {
+      print("Fail");
+      return null;
+    }
+  }
 }
